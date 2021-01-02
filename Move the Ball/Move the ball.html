@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Move the Ball</title>
+	<link rel="icon" type="icon" href="favicon.ico">
+	<style type="text/css">
+		#ball{
+			height: 60px;
+			width: 60px;
+			background-color: blue;
+			border-radius: 50%;
+			position: absolute;
+			top: 40%;
+			left: 40%;
+		}
+
+	</style>
+</head>
+<body>
+	<div id="ball"></div>
+
+	<script type="text/javascript">
+		var ball = document.getElementById('ball');
+
+		ball.style.top = ball.offsetTop + "px";
+		ball.style.left = ball.offsetLeft + "px";
+
+		var ballHeight = ball.offsetHeight;
+		var ballWidth = ball.offsetWidth;
+
+
+		function setValue(value) {
+    	return value + "px";
+		}
+		
+		window.addEventListener('keydown',function (event) {
+		console.log(event.keyCode)
+
+		var top = parseInt(ball.style.top);
+    	var left = parseInt(ball.style.left);
+
+		var keyPress = event.keyCode
+		// W or Up Arrow is pressed
+		if (keyPress === 119 || keyPress === 87 || keyPress === 38) {
+	        if (top > 5) {
+	            ball.style.top = setValue(top - 5);
+	        }
+    	}
+
+	    // A or Left Arrow is pressed
+	    else if (keyPress === 97 || keyPress === 65 || keyPress === 37) {
+	        if (left > 5) {
+	            ball.style.left = setValue(left - 5);
+	        }
+	    }
+
+	    // S or Down Arrow is pressed
+	    else if (keyPress === 115 || keyPress === 83 || keyPress === 40) {
+	        if (top < (window.innerHeight - ballHeight) - 5) {
+	            ball.style.top = setValue(top + 5);
+	        }
+	    }
+
+	    // D or Right Arrow is pressed
+	    else if (keyPress === 100 || keyPress === 68 || keyPress === 39) {
+	        if (left < (window.innerWidth - ballWidth) - 5) {
+	            ball.style.left = setValue(left + 5);
+	        }
+	    }
+
+		});
+
+	</script>
+
+</body>
+</html>
